@@ -8,6 +8,7 @@ import AuthService from "./services/auth.service";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
+import Footer from "./components/Footer";
 
 import EventBus from "./common/EventBus";
 
@@ -66,14 +67,14 @@ const App = () => {
         )}
       </nav>
 
-      <div className="container mt-3">
+      <div className="container-fluid">
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register/>} />
         </Routes>
       </div>
-
+      <Footer></Footer>
     </div>
   );
 };

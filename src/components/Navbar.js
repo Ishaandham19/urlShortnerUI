@@ -1,39 +1,53 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import EventBus from ".././common/EventBus";
+import AuthService from "../services/auth.service";
 
-const Navbar = () => {
-  const [content, setContent] = useState("");
-
+const Navbar = ({currentUser}) => {
   useEffect(() => {
-    UserService.getUserBoard().then(
-      (response) => {
-        setContent(response.data);
-      },
-      (error) => {
-        const _content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
+    EventBus.on("logout", () => {
+      logOut();
+    });
 
-        setContent(_content);
-
-        if (error.response && error.response.status === 401) {
-          EventBus.dispatch("logout");
-        }
-      }
-    );
+    return () => {
+      EventBus.remove("logout");
+    };
   }, []);
 
+  const logOut = () => {
+    AuthService.logout();
+  };
+
   return (
-    <div>
-        <nav>
-        <ul class="nav">
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
-        </ul>
-        </nav>
-  </div>
+    <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <Link to={"/"} className="navbar-brand">
+          ShortURL
+        </Link>
+
+        {currentUser ? (
+          <div className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <a href="/login" className="nav-link" onClick={logOut}>
+                Logout
+              </a>
+            </li>
+          </div>
+        ) : (
+          <div className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <Link to={"/login"} className="nav-link">
+                Login
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link to={"/register"} className="nav-link">
+                Sign Up
+              </Link>
+            </li>
+          </div>
+        )}
+      </nav>
   );
 };
 

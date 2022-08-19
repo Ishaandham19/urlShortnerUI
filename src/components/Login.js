@@ -53,8 +53,7 @@ const Login = () => {
         },
         (error) => {
           const resMessage =
-            (error.response &&
-              error.response.data &&
+            (error.response && error.response.data &&
               error.response.data.message) ||
             error.message ||
             error.toString();
@@ -69,9 +68,8 @@ const Login = () => {
   };
 
   return (
-    <div className="col-md-12">
-      <div className="card card-container">
-
+    <div className="col-md-12 center-div">
+      <div className="login-register-container card card-container">
         <Form onSubmit={handleLogin} ref={form}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
