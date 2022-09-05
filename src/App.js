@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import "./App.css";
 
 import AuthService from "./services/auth.service";
@@ -33,6 +33,7 @@ const App = () => {
 
   const logOut = () => {
     AuthService.logout();
+    window.location.reload();
   };
 
   return (
@@ -45,9 +46,12 @@ const App = () => {
         {currentUser ? (
           <div className="navbar-nav ml-auto">
             <li className="nav-item">
-              <a href="/login" className="nav-link" onClick={logOut}>
+              {/* <a href="/login" className="nav-link" onClick={logOut}>
                 Logout
-              </a>
+              </a> */}
+              <Link to={"/login"} className="nav-link" onClick={logOut}>
+                Logout
+              </Link>
             </li>
           </div>
         ) : (

@@ -24,7 +24,7 @@ const UserData = ({update}) => {
                     <ul className="list-group">
                     {urls.map((urlInfo) => {
                     return (
-                        <UrlEntry alias={urlInfo.Alias} shortUrl={urlInfo.ShortUrl} url={urlInfo.Url}></UrlEntry>
+                        <UrlEntry key={urlInfo.Alias} alias={urlInfo.Alias} shortUrl={urlInfo.ShortUrl} url={urlInfo.Url}></UrlEntry>
                     )
                 })}
                     </ul>

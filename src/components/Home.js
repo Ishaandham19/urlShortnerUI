@@ -49,7 +49,7 @@ const validUrl = (url) => {
 
   if (!URLRegex.test(url)) {
     return (
-      <div className="alert" role="alert">
+      <div className="alertText" role="alert">
         Not a valid url
       </div>
     );
@@ -60,7 +60,7 @@ const validAlias = (alias) => {
   const aliasRegex = RegExp("^[A-Za-z0-9_]+$")
   if (!aliasRegex.test(alias) && alias.length < 50) {
     return (
-      <div className="alert" role="alert">
+      <div className="alertText" role="alert">
         Alias must only contain alphabets, numbers and underscores
       </div>
     );
@@ -70,7 +70,7 @@ const validAlias = (alias) => {
 const required = (value) => {
   if (!value) {
     return (
-      <div className="alert" role="alert">
+      <div className="alertText" role="alert">
         This field is required!
       </div>
     );
@@ -114,9 +114,20 @@ const Home = () => {
       UserService.createUrl(url, alias).then(
         (res) => {
           setLoading(false);
-          navigator.clipboard.writeText(res.data.shortUrl)
-          setMessage("Copied short url to clipboard!")
           setUpdateUserUrls(!updateUserUrls)
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(res.data.shortUrl)
+            .then(
+              (res) => {
+                setMessage("Copied short url to clipboard!")
+              }
+            )
+            .catch(
+              (err) => {
+                setMessage("Short url created!")
+              }
+            )
+          }
         },
         (error) => {
           const resMessage = (error.response && error.response.message)
@@ -172,13 +183,13 @@ const Home = () => {
                   {loading && (
                     <span className="spinner-border spinner-border-sm"></span>
                   )}
-                  <span class="gradient-text">Shorten</span>
+                  <span className="gradient-text">Shorten</span>
                 </button>
               </div>
 
               {message && (
-                <div className="form-group">
-                  <div className="alert alert-dark" role="alert">
+                <div className="form-group" style={{ textAlign: 'center'}}>
+                  <div className="alertText" role="alert">
                     {message}
                   </div>
                 </div>

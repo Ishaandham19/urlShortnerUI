@@ -164,9 +164,24 @@ footer a:hover{
   box-shadow: 10px 5px 5px grey;
 }
 
+.form-group {
+  text-align: center;
+}
+
 #welcome-msg {
   padding: 5%;
   padding-bottom: 2%;
+}
+
+.alertText {
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  font-size: 0.6em;
+  color: white;
+  background-color: lightgray;
 }
 
 @media (min-width: 1375px) and (max-width: 1650px) {
