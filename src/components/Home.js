@@ -47,10 +47,19 @@ const validUrl = (url) => {
     "$"
   );
 
+  const selfLink = RegExp("shorturl.ishaandham.com/.*")
+
   if (!URLRegex.test(url)) {
     return (
       <div className="alertText" role="alert">
         Not a valid url
+      </div>
+    );
+  }
+  if (selfLink.test(url)) {
+    return (
+      <div className="alertText" role="alert">
+        Not a valid url (no self references!)
       </div>
     );
   }

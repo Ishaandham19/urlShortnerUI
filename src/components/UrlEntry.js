@@ -1,13 +1,13 @@
 const UrlEntry = ({alias, shortUrl, url}) => {
-    const urlLen = 45
-    const shortUrlLen = 30
+    // const urlLen = 45
+    // const shortUrlLen = 30
 
-    if (shortUrl.length > shortUrlLen) {
-        shortUrl = shortUrl.substring(0, shortUrlLen) + " . . ." 
-    }
-    if (url.length > urlLen) {
-        url = url.substring(0, urlLen) + " . . ." 
-    }
+    // if (shortUrl.length > shortUrlLen) {
+    //     shortUrl = shortUrl.substring(0, shortUrlLen) + " . . ." 
+    // }
+    // if (url.length > urlLen) {
+    //     url = url.substring(0, urlLen) + " . . ." 
+    // }
     const copyToClipboard = () => {
         navigator.clipboard.writeText(shortUrl)
     }
