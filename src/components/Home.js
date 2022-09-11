@@ -136,6 +136,8 @@ const Home = () => {
                 setMessage("Short url created!")
               }
             )
+          } else {
+            setMessage("Short url created!")
           }
         },
         (error) => {
